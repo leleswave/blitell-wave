@@ -31,6 +31,11 @@
 
                 <div class="flex flex-col justify-start items-center px-4 space-y-1.5 w-full h-full text-slate-600 dark:text-zinc-400">
                     <x-app.sidebar-link href="/dashboard" icon="phosphor-house" :active="Request::is('dashboard')">Dashboard</x-app.sidebar-link>
+                   
+                    <x-app.sidebar-link text="Dialler" icon="phosphor-house" :active="Request::is('dialer')">Dialer</x-app.sidebar-link>
+                    <x-app.sidebar-link text="Messaging" icon="phosphor-chat" :active="Request::is('messaging')">Messaging</x-app.sidebar-link>
+                    <x-app.sidebar-link text="Phone Book" icon="phosphor-address-book" :active="Request::is('dialer')">Phone Book</x-app.sidebar-link>
+                
                     <x-app.sidebar-dropdown text="Projects" icon="phosphor-stack" id="projects_dropdown" :active="(Request::is('projects'))" :open="(Request::is('project_a') || Request::is('project_b') || Request::is('project_c')) ? '1' : '0'">
                         <x-app.sidebar-link onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" icon="phosphor-cube" :active="(Request::is('project_a'))">Project A</x-app.sidebar-link>
                         <x-app.sidebar-link onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" icon="phosphor-cube" :active="(Request::is('project_b'))">Project B</x-app.sidebar-link>
