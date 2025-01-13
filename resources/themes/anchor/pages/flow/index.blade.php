@@ -1,105 +1,71 @@
 <?php
     use function Laravel\Folio\{middleware, name};
     middleware('auth');
-    name('flowbuilder');
+    name('callflows');
 ?>
 
 <x-layouts.app>
-    <x-app.container x-data="flowBuilder()" x-cloak>
+    <x-app.container x-data class="lg:space-y-6" x-cloak>
 
         <x-app.alert id="dashboard_alert" class="hidden lg:flex">
-            Configure your AI telephone service with the interactive flow builder.
+            Manage your call flows. Add new flows or view and edit existing ones.
         </x-app.alert>
 
         <x-app.heading
-            title="AI Flow Builder"
-            description="Drag and drop nodes to create a custom call flow."
+            title="Call Flows"
+            description="Create and manage call flows below."
             :border="false"
         />
 
-        <!-- Flow Builder Canvas -->
-        <div class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
-            <!-- Nodes Library -->
-            <div class="bg-white p-4 rounded shadow w-full lg:w-1/4">
-                <h3 class="text-lg font-bold mb-4">Node Library</h3>
-                <div class="space-y-2">
-                    <button
-                        class="block w-full px-4 py-2 text-left text-sm font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
-                        @click="addNode('Welcome')">
-                        Welcome Message
-                    </button>
-                    <button
-                        class="block w-full px-4 py-2 text-left text-sm font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
-                        @click="addNode('Menu')">
-                        Menu
-                    </button>
-                    <button
-                        class="block w-full px-4 py-2 text-left text-sm font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
-                        @click="addNode('Action')">
-                        Action
-                    </button>
-                    <button
-                        class="block w-full px-4 py-2 text-left text-sm font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
-                        @click="addNode('Transfer')">
-                        Transfer Call
-                    </button>
-                </div>
-            </div>
-
-            <!-- Flow Canvas -->
-            <div class="bg-gray-100 p-4 rounded shadow w-full lg:w-3/4 relative">
-                <div id="flow-canvas" class="relative h-[500px] w-full bg-white rounded shadow overflow-hidden">
-                    <template x-for="(node, index) in nodes" :key="index">
-                        <div
-                            class="absolute p-4 bg-blue-100 border border-blue-300 rounded shadow"
-                            :style="{ left: node.x + 'px', top: node.y + 'px' }"
-                            draggable="true"
-                            @dragstart="dragStart($event, index)"
-                            @dragend="dragEnd($event, index)"
-                        >
-                            <h4 class="text-sm font-bold text-blue-600" x-text="node.type"></h4>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </div>
-
-        <!-- Save Button -->
-        <div class="flex justify-end mt-6">
+        <!-- Add New Call Flow Button -->
+        <div class="flex justify-end mb-5">
             <button
-                class="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700"
-                @click="saveFlow()">
-                Save Flow
+                class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
+                Add New Call Flow
             </button>
         </div>
 
-    </x-app.container>
+        <!-- Call Flows List -->
+        <div class="overflow-hidden bg-white rounded shadow">
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 border-b">#</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 border-b">Call Flow Name</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 border-b">Status</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-6 py-4 border-b">1</td>
+                        <td class="px-6 py-4 border-b">Support Line</td>
+                        <td class="px-6 py-4 border-b">
+                            <span class="px-2 py-1 text-sm font-medium text-white bg-green-500 rounded">
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 border-b">
+                            <button class="text-blue-600 hover:underline">Edit</button>
+                            <button class="ml-2 text-red-600 hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-6 py-4 border-b">2</td>
+                        <td class="px-6 py-4 border-b">Sales Inquiry</td>
+                        <td class="px-6 py-4 border-b">
+                            <span class="px-2 py-1 text-sm font-medium text-white bg-yellow-500 rounded">
+                                Pending
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 border-b">
+                            <button class="text-blue-600 hover:underline">Edit</button>
+                            <button class="ml-2 text-red-600 hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Alpine.js Logic -->
-    <script>
-        function flowBuilder() {
-            return {
-                nodes: [],
-                addNode(type) {
-                    this.nodes.push({
-                        type,
-                        x: 50,
-                        y: 50
-                    });
-                },
-                dragStart(event, index) {
-                    event.dataTransfer.setData("index", index);
-                },
-                dragEnd(event, index) {
-                    const rect = event.target.parentElement.getBoundingClientRect();
-                    this.nodes[index].x = event.clientX - rect.left;
-                    this.nodes[index].y = event.clientY - rect.top;
-                },
-                saveFlow() {
-                    console.log("Flow Saved", this.nodes);
-                    alert('Flow configuration saved successfully!');
-                }
-            };
-        }
-    </script>
+    </x-app.container>
 </x-layouts.app>
