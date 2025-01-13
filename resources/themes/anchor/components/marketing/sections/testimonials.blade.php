@@ -1,4 +1,4 @@
-<section class="w-full">
+<!-- <section class="w-full">
     <x-marketing.elements.heading level="h2" title="Oceans of Approval" description="Find out why users are on board with Wave, through their own words and success tales." />
     <ul role="list" class="grid grid-cols-1 gap-12 py-12 mx-auto max-w-2xl lg:max-w-none lg:grid-cols-3">
         <li>
@@ -56,4 +56,4 @@
             </figure>
         </li>
     </ul>
-</section>
+</section> -->
