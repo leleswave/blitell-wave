@@ -9,5 +9,8 @@
 !anchor/
 !anchor/**/*
 
+!blitell-pbx/
+!blitell-pbx/**/*
+
 # Ignore all .DS_Store files
 .DS_Store
