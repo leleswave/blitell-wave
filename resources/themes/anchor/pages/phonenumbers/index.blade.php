@@ -19,7 +19,7 @@
 
         <!-- Add New Phone Number Button -->
         <div class="flex justify-end mb-5">
-            <a href="{{ route('phonenumbers.create') }}"
+            <a href="#_"
                class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
                 Add New Number
             </a>
