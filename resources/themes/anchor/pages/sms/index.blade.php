@@ -20,7 +20,7 @@ name('sms');
 
 
         <!-- Start block -->
-        <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+  
             <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
                 <!-- Start coding here -->
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -628,7 +628,7 @@ name('sms');
                     </nav>
                 </div>
             </div>
-        </section>
+   
         <!-- End block -->
         <!-- Create modal -->
         <div id="createProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
