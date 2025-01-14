@@ -16,34 +16,47 @@ name('sms');
                 SMS enviado com sucesso!
             </div>
 
+            <flux:fieldset>
+                <flux:legend>Languages</flux:legend>
+
+                <flux:description>Choose the languages you want to support.</flux:description>
+
+                <div class="flex gap-4 *:gap-x-2">
+                    <flux:checkbox checked value="english" label="English" />
+                    <flux:checkbox checked value="spanish" label="Spanish" />
+                    <flux:checkbox value="french" label="French" />
+                    <flux:checkbox value="german" label="German" />
+                </div>
+            </flux:fieldset>
+
             <!-- SMS Form -->
             <form method="POST" action="/send-sms" @submit.prevent="success = true" class="space-y-4">
                 @csrf
                 <div>
                     <label for="recipient" class="block text-sm font-medium text-gray-700">Número do destinatário</label>
-                    <input 
-                        type="text" 
-                        id="recipient" 
-                        name="recipient" 
-                        required 
+                    <input
+                        type="text"
+                        id="recipient"
+                        name="recipient"
+                        required
                         class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         placeholder="+1234567890">
                 </div>
 
                 <div>
                     <label for="message" class="block text-sm font-medium text-gray-700">Mensagem</label>
-                    <textarea 
-                        id="message" 
-                        name="message" 
-                        required 
-                        rows="4" 
+                    <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows="4"
                         class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         placeholder="Digite sua mensagem aqui"></textarea>
                 </div>
 
                 <div>
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         class="inline-flex justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Enviar SMS
                     </button>
