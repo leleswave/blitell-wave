@@ -12,7 +12,7 @@ name('phonenumbers'); // A route name is recommended
 <x-layouts.app>
     <x-app.container class="lg:space-y-6">
         <x-app.heading title="Phone Numbers" description="Search and manage your phone numbers." />
-		<div class="bg-gray-100 p-6">
+		<div class="">
         <!-- Search Criteria -->
         <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6">
             <div class="flex-1">
