@@ -33,7 +33,7 @@
 
                 <div class="flex flex-col justify-start items-center px-4 space-y-1.5 w-full h-full text-slate-600 dark:text-zinc-400">
                     <x-app.sidebar-link href="/dashboard" icon="phosphor-house" :active="Request::is('dashboard')">Dashboard</x-app.sidebar-link>
-                    <x-app.sidebar-link text="Dialler" icon="phosphor-phone-call" onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" :active="Request::is('dialer')">Phone Numbers</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/phonenumbers" text="Phone Numbers" icon="phosphor-phone-call" onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" :active="Request::is('phonenumbers')">Phone Numbers</x-app.sidebar-link>
                     <x-app.sidebar-link text="Call Flow" icon="phosphor-flow-arrow" onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" :active="Request::is('extensions')">Call Flow</x-app.sidebar-link>
                     <x-app.sidebar-link text="Messaging" icon="phosphor-chat" onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" :active="Request::is('messaging')">Messaging</x-app.sidebar-link>
                     <x-app.sidebar-link text="Phone Book" icon="phosphor-address-book" onclick="event.preventDefault(); new FilamentNotification().title('Modify this button inside of sidebar.blade.php').send()" :active="Request::is('phone book')">Phone Book</x-app.sidebar-link>
