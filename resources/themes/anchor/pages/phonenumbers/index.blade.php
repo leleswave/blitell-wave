@@ -7,75 +7,98 @@ name('phonenumbers'); // A route name is recommended
 
 ?>
 
+
+
 <x-layouts.app>
     <x-app.container class="lg:space-y-6">
         <x-app.heading title="Phone Numbers" description="Search and manage your phone numbers." />
-
-        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <div class="p-4 space-y-4">
-                <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0">
-                  <div class="w-full md:w-1/2">
-                      <label for="search" class="sr-only">Search</label>
-                      <div class="relative w-full">
-                          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                              <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                              </svg>
-                          </div>
-                          <input type="text" id="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search by digits or phrases">
-                      </div>
-                  </div>
-                  <button type="button" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Search</button>
-                    <button type="button" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600 focus:outline-none dark:focus:ring-primary-800">Reset filters</button>
-                </div>
-
-                <div class="p-4 bg-blue-50 dark:bg-blue-900 rounded-lg text-blue-800 dark:text-blue-300 flex items-center justify-between">
-                    <span>Sending OTP or 2FA? Skip wait times, let us handle compliance, and launch globally on day 1 with Verify.</span>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 underline hover:no-underline">Learn more about Verify →</a>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">Number</th>
-                                <th scope="col" class="px-4 py-3">Type</th>
-                                <th scope="col" class="px-4 py-3">Capabilities</th>
-                                <th scope="col" class="px-4 py-3">Address Requirement</th>
-                                <th scope="col" class="px-4 py-3">Monthly fee</th>
-                                <th scope="col" class="px-4 py-3"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($phoneNumbers as $phoneNumber)
-                            <tr class="border-b dark:border-gray-700">
-                                <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $phoneNumber['number'] }}</td>
-                                <td class="px-4 py-3">{{ $phoneNumber['type'] }}</td>
-                                <td class="px-4 py-3">
-                                    @if ($phoneNumber['voice'])
-                                        <x-icons.phone class="h-5 w-5 text-green-500 inline-block"/>
-                                    @endif
-                                    @if ($phoneNumber['sms'])
-                                        <x-icons.sms class="h-5 w-5 text-green-500 inline-block"/>
-                                    @endif
-                                    @if ($phoneNumber['mms'])
-                                        <x-icons.mms class="h-5 w-5 text-green-500 inline-block"/>
-                                    @endif
-                                    @if ($phoneNumber['fax'])
-                                        <x-icons.fax class="h-5 w-5 text-green-500 inline-block"/>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-3">{{ $phoneNumber['address_requirement'] }}</td>
-                                <td class="px-4 py-3">${{ $phoneNumber['monthly_fee'] }}</td>
-                                <td class="px-4 py-3 text-right">
-                                  <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Buy</button>
-                                </td>
-                            </tr>
-                          @endforeach
-                        </tbody>
-                    </table>
-                </div>
+		<div class="bg-gray-100 p-6">
+        <!-- Search Criteria -->
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6">
+            <div class="flex-1">
+                <label for="number" class="block text-sm font-medium text-gray-700">Number</label>
+                <select id="number" name="number" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option>Number</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="search" class="block text-sm font-medium text-gray-700">Search by digits or phrases</label>
+                <input type="text" id="search" name="search" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="flex-1">
+                <label for="match" class="block text-sm font-medium text-gray-700">Match to</label>
+                <select id="match" name="match" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option>First part of number</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="flex items-end space-x-2">
+                <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Search
+                </button>
+                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">Reset filters</a>
             </div>
         </div>
+
+        <!-- Advanced Search -->
+        <div class="mb-6">
+            <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">Advanced Search</a>
+        </div>
+
+        <!-- OTP or 2FA Info -->
+        <div class="bg-white p-4 border border-blue-300 rounded-md mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-lg font-medium text-gray-900">Sending OTP or 2FA?</h2>
+                    <p class="text-sm text-gray-500">Skip wait times, let us handle compliance, and launch globally on day 1 with Verify.</p>
+                </div>
+                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">Learn more about Verify</a>
+            </div>
+        </div>
+
+        <!-- Table of Phone Numbers -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Number</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capabilities</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address Requirement</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly fee</th>
+                        <th scope="col" class="relative px-6 py-3"></th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <span class="font-medium text-gray-900">+1 608 938 8459</span>
+                                <span class="ml-2 text-sm text-gray-500">Monticello, WI US</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm text-gray-900">Local</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Voice</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">SMS</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm text-gray-500">None</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm text-gray-900">$1.15</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="#" class="text-blue-600 hover:text-blue-500">Edit</a>
+                        </td>
+                    </tr>
+                    <!-- More rows here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
     </x-app.container>
 </x-layouts.app>
