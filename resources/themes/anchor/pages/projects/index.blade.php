@@ -11,7 +11,6 @@ use function Laravel\Folio\{middleware, name};
 
 middleware('auth');
 name('projects');
-
 new class extends Component implements HasForms, Tables\Contracts\HasTable
 {
     use InteractsWithForms, InteractsWithTable;
@@ -126,9 +125,8 @@ new class extends Component implements HasForms, Tables\Contracts\HasTable
     }
 }
 ?>
-
 <x-layouts.app>
-    @volt('projects')
+    @volt('projects.create')
     <x-app.container class="max-w-5xl">
         <div class="flex items-center justify-between mb-5">
             <x-app.heading title="Projects" description="Check out your projects below" :border="false" />
