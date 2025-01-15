@@ -2,7 +2,7 @@
 
 use App\Models\Project;
 use Filament\Forms\{Form, Concerns\InteractsWithForms, Contracts\HasForms};
-use Filament\Forms\Components\{TextArea, TextInput, DatePicker};
+use Filament\Forms\Components\{Textarea, TextInput, DatePicker};
 use Filament\Notifications\Notification;
 use Filament\Tables;
 use Filament\Tables\{Table, Concerns\InteractsWithTable, Contracts\HasTable, Actions\Action, Actions\CreateAction, Actions\DeleteAction, Actions\EditAction, Actions\ViewAction, Columns\TextColumn};
@@ -48,7 +48,7 @@ new class extends Component implements HasForms, Tables\Contracts\HasTable
                     ->form([
                         TextInput::make('name')
                             ->disabled(),
-                        TextArea::make('description')
+                        Textarea::make('description')
                             ->disabled(),
                         DatePicker::make('start_date')
                             ->disabled(),
@@ -62,7 +62,7 @@ new class extends Component implements HasForms, Tables\Contracts\HasTable
                         TextInput::make('name')
                             ->required()
                             ->maxLength(255),
-                        TextArea::make('description')
+                        Textarea::make('description')
                             ->maxLength(1000),
                         DatePicker::make('start_date'),
                         DatePicker::make('end_date')
@@ -103,7 +103,7 @@ new class extends Component implements HasForms, Tables\Contracts\HasTable
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                TextArea::make('description')
+                Textarea::make('description')
                     ->maxLength(1000),
                 DatePicker::make('start_date'),
                 DatePicker::make('end_date')
