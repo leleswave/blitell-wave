@@ -126,7 +126,7 @@ new class extends Component implements HasForms, Tables\Contracts\HasTable
 }
 ?>
 <x-layouts.app>
-    @volt('projects.create')
+    @volt('projects')
     <x-app.container class="max-w-5xl">
         <div class="flex items-center justify-between mb-5">
             <x-app.heading title="Projects" description="Check out your projects below" :border="false" />
