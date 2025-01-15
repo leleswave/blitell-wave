@@ -4,7 +4,7 @@
     use App\Models\Project;
     use Livewire\Volt\Component;
     middleware('auth');
-    name('project');
+    name('projects');
 
     new class extends Component{
         public $projects;
