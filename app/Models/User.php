@@ -11,6 +11,8 @@ class User extends WaveUser
 {
     use Notifiable, HasProfileKeyValues;
 
+
+
     public $guard_name = 'web';
 
     /**
@@ -40,10 +42,16 @@ class User extends WaveUser
         'remember_token',
     ];
 
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
-        
+
         // Listen for the creating event of the model
         static::creating(function ($user) {
             // Check if the username attribute is empty
@@ -64,7 +72,7 @@ class User extends WaveUser
             // Remove all roles
             $user->syncRoles([]);
             // Assign the default role
-            $user->assignRole( config('wave.default_user_role', 'registered') );
+            $user->assignRole(config('wave.default_user_role', 'registered'));
         });
     }
 }
