@@ -148,6 +148,8 @@
                         </div>
                     </form>
                 </x-modal>
+                </x-filament-actions::modals>
+               
             </div>
             <div class="overflow-x-auto border rounded-lg">
                 {{ $this->table }}
