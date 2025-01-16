@@ -17,6 +17,7 @@ export default defineConfig({
             ],
             refresh: [
                 `resources/themes/${activeTheme}/**/*`,
+                  `app/Livewire/**`
             ],
         }),
     ],
