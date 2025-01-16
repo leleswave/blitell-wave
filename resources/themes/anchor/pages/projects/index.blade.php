@@ -1,7 +1,7 @@
 <?php
     use App\Models\Project;
     use Filament\Forms\{Form, Concerns\InteractsWithForms, Contracts\HasForms};
-    use Filament\Forms\Components\{TextArea, TextInput, DatePicker};
+    use Filament\Forms\Components\{Textarea, TextInput, DatePicker};
     use Filament\Notifications\Notification;
     use Filament\Tables;
     use Filament\Tables\{Table, Concerns\InteractsWithTable, Contracts\HasTable, Actions\Action, Actions\CreateAction, Actions\DeleteAction, Actions\EditAction, Actions\ViewAction, Columns\TextColumn};
