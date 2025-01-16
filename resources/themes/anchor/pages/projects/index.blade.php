@@ -127,30 +127,15 @@
 ?>
 
 <x-layouts.app>
-    <!-- @volt('projects') -->
+
         <x-app.container class="max-w-5xl">
             <div class="flex items-center justify-between mb-5">
                 <x-app.heading title="Projects" description="Check out your projects below" :border="false"/>
-                <!-- <x-modal id="create-project" width="md" :slide-over="true">
-                    <x-slot name="trigger">
-                        <x-button>New Project</x-button>
-                    </x-slot>
-                    <x-slot name="header">
-                        <h2 class="text-lg font-medium">Create Project</h2>
-                    </x-slot>
-                    <form wire:submit="create" class="space-y-6">
-                        {{ $this->form }}
-                        <div class="flex justify-end mt-6">
-                            <x-button type="submit" wire:target="create">
-                                Create Project
-                            </x-button>
-                        </div>
-                    </form>
-                </x-modal> -->
+               
             </div>
             <div class="overflow-x-auto border rounded-lg">
                 {{ $this->table }}
             </div>
         </x-app.container>
-    <!-- @endvolt -->
+   
 </x-layouts.app>
