@@ -127,7 +127,7 @@
 ?>
 
 <x-layouts.app>
-    @volt('projects')
+    <!-- @volt('projects') -->
         <x-app.container class="max-w-5xl">
             <div class="flex items-center justify-between mb-5">
                 <x-app.heading title="Projects" description="Check out your projects below" :border="false"/>
@@ -152,5 +152,5 @@
                 {{ $this->table }}
             </div>
         </x-app.container>
-    @endvolt
+    <!-- @endvolt -->
 </x-layouts.app>
